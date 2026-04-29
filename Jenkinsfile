@@ -2,15 +2,23 @@ pipeline {
     agent any 
 
     stages {
-        stage('Build and Run') {
+        stage('Build and Deploy') {
             steps {
                 script {
-                    // Use the plugin's built-in docker features
-                    echo 'Building and starting containers...'
-                    sh 'docker compose build' 
-                    sh 'docker compose up -d'
+                    echo '🚀 Starting Deployment...'
+                    // Build and start containers
+                    sh 'docker compose up -d --build'
                 }
             }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Application deployed successfully!'
+        }
+        failure {
+            echo '❌ Deployment failed. Check the logs above.'
         }
     }
 }
