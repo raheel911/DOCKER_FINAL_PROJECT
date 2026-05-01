@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "test": "echo \"Success: No tests specified yet\""
-  },
+  "test": "echo \"Success: Placeholder for future tests\""
+}
   "keywords": [],
   "author": "",
   "license": "ISC",
