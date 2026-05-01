@@ -10,6 +10,10 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    # This fixes the Node.js 20 deprecation warning
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+
     services:
       mysql:
         image: mysql:8.0
@@ -30,11 +34,12 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        # Fixed: working-directory is now a separate property
+        # Points to the backend folder where package.json lives
         working-directory: ./backend
         run: npm install
 
       - name: Run Tests
+        # Points to the backend folder to run the npm test script
         working-directory: ./backend
         run: npm test
         env:
